@@ -1,12 +1,13 @@
 package com.example.Spring.Boot.Starts.student;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.time.LocalDate;
 import java.util.List;
 
-@Component
+@Service
 public class StudentService {
     @GetMapping(path= "api/v1/student")
     public List<Student> getStudents(){
