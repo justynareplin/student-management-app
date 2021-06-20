@@ -7,8 +7,9 @@ import java.util.List;
 
 @Service
 public class ParentService {
-    @GetMapping(path = "api/v1/parent")
-        public List<Parent> getParents(){
-        return List.of(new Parent(1, "Kamil", "Brzozowski", 33));
+    @GetMapping(path="api/v1/parent")
+    public List<Parent> allParents(){
+        return List.of(new Parent(1L, "grazyna", "lasko"));
     }
+
 }

@@ -1,16 +1,38 @@
 package com.example.Spring.Boot.Starts.Parents;
 
-public class Parent {
-    private long id;
-    private String name;
-    private String surname;
-    private int age;
+import javax.persistence.*;
 
-    public Parent(long id, String name, String surname, int age) {
+@Entity
+@Table
+public class Parent {
+    @Id
+    @SequenceGenerator(
+            name="parent_sequence",
+            sequenceName = "parent_sequence",
+            allocationSize=1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator="parent_sequence"
+    )
+    private Long id;
+    private String name;
+    private String lastName;
+
+    public Parent(){};
+
+    public Parent(Long id, String name, String lastName) {
         this.id = id;
         this.name = name;
-        this.surname = surname;
-        this.age = age;
+        this.lastName = lastName;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -21,20 +43,12 @@ public class Parent {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     @Override
@@ -42,8 +56,7 @@ public class Parent {
         return "Parent{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", age=" + age +
+                ", lastName='" + lastName + '\'' +
                 '}';
     }
 }

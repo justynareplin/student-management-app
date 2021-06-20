@@ -1,16 +1,42 @@
 package com.example.Spring.Boot.Starts.teacher;
 
-public class Teacher {
-    private String name;
-    private String surname;
-    private String position;
-    private Integer age;
+import javax.persistence.*;
 
-    public Teacher(String name, String surname, String position, Integer age) {
+@Entity
+@Table
+public class Teacher {
+    @Id
+    @SequenceGenerator(
+            name="teacher_sequence",
+            sequenceName = "teacher_sequence",
+            allocationSize = 1
+    )
+
+    @GeneratedValue(
+        strategy = GenerationType.SEQUENCE,
+        generator="teacher_sequence"
+    )
+
+    private Long id;
+    private String name;
+    private String lastName;
+    private String position;
+
+    public Teacher(){};
+
+    public Teacher(Long id, String name, String lastName, String position) {
+        this.id = id;
         this.name = name;
-        this.surname = surname;
+        this.lastName = lastName;
         this.position = position;
-        this.age = age;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -21,13 +47,14 @@ public class Teacher {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
+
     public String getPosition() {
         return position;
     }
@@ -36,21 +63,13 @@ public class Teacher {
         this.position = position;
     }
 
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
     @Override
     public String toString() {
         return "Teacher{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", position='" + position + '\'' +
-                ", age=" + age +
                 '}';
     }
 }

@@ -1,5 +1,6 @@
 package com.example.Spring.Boot.Starts.student;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,16 +10,16 @@ import java.util.List;
 
 @Service
 public class StudentService {
-    @GetMapping(path= "api/v1/student")
-    public List<Student> getStudents(){
-        return List.of(
-                new Student(
-                        1L,
-                        "Mariam",
-                        21,
-                        LocalDate.of(2000,02,22),
-                        "ustyniak@gmail.com"
-                )
-        );
+    private final StudentRepository studentRepository;
+
+    @Autowired
+    public StudentService(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
     }
+
+    public List<Student> getStudents(){
+        return studentRepository.findAll();
+    }
+
+
 }

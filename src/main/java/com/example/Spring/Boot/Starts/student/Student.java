@@ -2,6 +2,7 @@ package com.example.Spring.Boot.Starts.student;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 @Table
@@ -18,34 +19,32 @@ public class Student {
     )
     private Long id;
     private String name;
+    @Transient
     private Integer age;
     private LocalDate dob;
     private String email;
 
-    public Student(){}
+    public Student(){};
+
 
     public Student(Long id,
                    String name,
-                   Integer age,
                    LocalDate dob,
                    String email) {
         this.id = id;
         this.name = name;
-        this.age = age;
         this.dob = dob;
         this.email = email;
 
     }
     public Student(String name,
-                   Integer age,
                    LocalDate dob,
                    String email) {
         this.name = name;
-        this.age = age;
         this.dob = dob;
         this.email = email;
-    }
 
+    }
     public Long getId() {
         return id;
     }
@@ -60,10 +59,6 @@ public class Student {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Integer getAge() {
-        return age;
     }
 
     public void setAge(Integer age) {
@@ -81,7 +76,10 @@ public class Student {
     public String getEmail() {
         return email;
     }
+    public Integer getAge() {
+        return age;
 
+    }
     public void setEmail(String email) {
         this.email = email;
     }
